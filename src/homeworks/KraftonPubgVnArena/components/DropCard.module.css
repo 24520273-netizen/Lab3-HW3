@@ -1,4 +1,4 @@
-﻿.card {
+.card {
   display: flex;
   flex-direction: column;
   min-width: 0;
@@ -111,4 +111,73 @@
   color: #cbd5e1;
   font-size: 12px;
   text-align: center;
+}
+
+.phaseBox {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  gap: 14px;
+  min-height: 116px;
+  padding: 14px;
+  border: 1px solid #64748b;
+  border-radius: 8px;
+  background: #0d1722;
+  text-align: center;
+}
+
+.phaseStatus {
+  display: inline-block;
+  padding: 7px 10px;
+  border-radius: 5px;
+  background: #334155;
+  color: #f8fafc;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.phaseStatus[data-phase="WARMUP"] {
+  background: #634a12;
+  color: #fef3c7;
+}
+
+.phaseStatus[data-phase="AIRDROP_LIVE"] {
+  background: #14532d;
+  color: #dcfce7;
+}
+
+.phaseStatus[data-phase="LOOTED_OUT"] {
+  background: #7f1d1d;
+  color: #fee2e2;
+}
+
+.phaseStatus[data-phase="EXPIRED"] {
+  background: #374151;
+  color: #f9fafb;
+}
+
+.countdown {
+  display: grid;
+  justify-items: center;
+  gap: 5px;
+  width: 100%;
+}
+
+.countdown > span {
+  color: #e2e8f0;
+  font-size: 12px;
+}
+
+.clock {
+  color: #fde047;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+@media (max-width: 375px) {
+  .clock {
+    font-size: 21px;
+  }
 }
