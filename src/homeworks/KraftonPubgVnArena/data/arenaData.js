@@ -1,4 +1,4 @@
-﻿export const dropItems = [
+export const dropItems = [
   {
     id: 'pvs-vip-pass',
     title: 'PVS Grand Finals VIP Ticket',
@@ -6,6 +6,7 @@
     priceVnd: 250000,
     remainingStock: 20,
     dropEpochMs: Date.parse('2026-12-20T19:00:00+07:00'),
+    claimWindowMs: 2 * 60 * 60 * 1000,
   },
   {
     id: 'gcoin-contraband-crate',
@@ -13,7 +14,8 @@
     type: 'crate',
     priceVnd: 79000,
     remainingStock: 50,
-    dropEpochMs: Date.parse('2026-12-20T19:00:00+07:00'),
+    dropEpochMs: Date.parse('2026-12-20T19:30:00+07:00'),
+    claimWindowMs: 60 * 60 * 1000,
   },
 ]
 
