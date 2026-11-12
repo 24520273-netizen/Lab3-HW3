@@ -1,4 +1,5 @@
-﻿import DropCard from './components/DropCard.jsx'
+import DropCard from './components/DropCard.jsx'
+import SquadLeaderboard from './components/SquadLeaderboard.jsx'
 import {
   dropItems,
   squadStandings,
@@ -87,10 +88,7 @@ export default function ArenaShell() {
         </section>
 
         <section className={styles.nextPanels} aria-label="Upcoming arena panels">
-          <article>
-            <h2>Championship Leaderboard</h2>
-            <p>Squad standings and ranking controls are coming next.</p>
-          </article>
+          <SquadLeaderboard standings={squadStandings} />
 
           <article>
             <h2>Battle Kill-Feed</h2>
