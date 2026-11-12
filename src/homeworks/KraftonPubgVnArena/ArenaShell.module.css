@@ -1,4 +1,4 @@
-﻿.arena {
+.arena {
   --arena-bg: #0b1118;
   --arena-panel: #17212b;
   --arena-yellow: #facc15;
@@ -275,5 +275,19 @@
 
   .description {
     font-size: 14px;
+  }
+}
+
+.nextPanels {
+  align-items: start;
+}
+
+.nextPanels > * {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .nextPanels {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

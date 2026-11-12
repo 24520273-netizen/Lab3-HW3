@@ -1,5 +1,6 @@
 import DropCard from './components/DropCard.jsx'
 import SquadLeaderboard from './components/SquadLeaderboard.jsx'
+import KillFeed from './components/KillFeed.jsx'
 import {
   dropItems,
   squadStandings,
@@ -90,10 +91,7 @@ export default function ArenaShell() {
         <section className={styles.nextPanels} aria-label="Upcoming arena panels">
           <SquadLeaderboard standings={squadStandings} />
 
-          <article>
-            <h2>Battle Kill-Feed</h2>
-            <p>Simulated elimination events and filters are coming next.</p>
-          </article>
+          <KillFeed events={killFeedEvents} squads={squadStandings} />
         </section>
       </main>
 

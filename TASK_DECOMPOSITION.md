@@ -1,4 +1,4 @@
-﻿# LAB 03 – HOMEWORK 3
+# LAB 03 – HOMEWORK 3
 ## KRAFTON x PUBG Vietnam Championship & Airdrop Arena
 
 **Tech Stack:** React 19, Vite, JavaScript, CSS Modules
@@ -241,3 +241,16 @@ Commit 6: Add kill-feed filters and responsive layout
 - Accessibility and UI verification
 
 Step 3 timer, FSM and Step 4 claim logic are excluded.
+
+STEP 2 VERIFICATION SUMMARY
+
+Status: DONE
+
+- Arena datasets and item cards completed
+- Championship Arena UI completed
+- Leaderboard sorting and filtering completed
+- Kill-Feed filtering completed
+- Responsive CSS implemented
+- Automated tests, lint and production build verified
+
+Next: Step 3 - Anti-Drift Timer and Airdrop FSM
