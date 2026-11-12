@@ -1,4 +1,8 @@
+import { useState } from 'react'
 import DropCard from './components/DropCard.jsx'
+import useClaimInventory from './hooks/useClaimInventory.js'
+import { getDisplayedStock } from './domain/claimInventory.js'
+import { createMockClaimApi } from './services/claimApi.js'
 import SquadLeaderboard from './components/SquadLeaderboard.jsx'
 import KillFeed from './components/KillFeed.jsx'
 import {
@@ -9,6 +13,33 @@ import {
 import styles from './ArenaShell.module.css'
 
 export default function ArenaShell() {
+  const [demoOffsetMs, setDemoOffsetMs] = useState(0)
+
+  const [claimApi] = useState(() => createMockClaimApi(dropItems))
+
+  const { inventory, requestClaim, armConflict } =
+    useClaimInventory(dropItems, claimApi)
+
+  const inventoryItems = dropItems.map((item) => ({
+    ...item,
+    remainingStock: getDisplayedStock(inventory, item.id),
+  }))
+
+  function toggleDemoClock(enabled) {
+    const demoStart =
+      Math.max(...dropItems.map((item) => item.dropEpochMs)) + 60000
+
+    const demoEnd = Math.min(
+      ...dropItems.map((item) => item.dropEpochMs + item.claimWindowMs),
+    )
+
+    if (demoStart >= demoEnd) return
+
+    const nextOffset = enabled ? demoStart - Date.now() : 0
+
+    claimApi.setClockOffset(nextOffset)
+    setDemoOffsetMs(nextOffset)
+  }
   return (
     <div className={styles.arena}>
       <header className={styles.header}>
@@ -72,6 +103,21 @@ export default function ArenaShell() {
           </div>
         </section>
 
+        <aside className={styles.demoNotice} aria-label="Claim simulation controls">
+          <label className={styles.demoToggle}>
+            <input
+              type="checkbox"
+              checked={demoOffsetMs !== 0}
+              onChange={(event) => toggleDemoClock(event.target.checked)}
+            />
+            Preview live claim window (demo)
+          </label>
+          <p>
+            Simulation only. This adjusts the mock clock so you can test
+            Claim and HTTP 409 without waiting for the scheduled drop.
+            No real PUBG service or payment is connected.
+          </p>
+        </aside>
         <section className={styles.drops} aria-labelledby="drops-title">
           <div className={styles.sectionHeading}>
             <div>
@@ -82,8 +128,16 @@ export default function ArenaShell() {
           </div>
 
           <div className={styles.dropGrid}>
-            {dropItems.map((item) => (
-              <DropCard key={item.id} item={item} />
+            {inventoryItems.map((item) => (
+              <DropCard
+                key={item.id}
+                item={item}
+                serverOffsetMs={demoOffsetMs}
+                isPending={Boolean(inventory.pendingClaimById[item.id])}
+                feedback={inventory.feedbackById[item.id]}
+                onClaim={() => requestClaim(item)}
+                onSimulateConflict={() => armConflict(item.id)}
+              />
             ))}
           </div>
         </section>

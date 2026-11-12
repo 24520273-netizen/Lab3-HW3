@@ -1,4 +1,4 @@
-﻿import { AIRDROP_PHASE, getAirdropPhase } from '../domain/airdropState.js'
+import { AIRDROP_PHASE, getAirdropPhase } from '../domain/airdropState.js'
 
 export class ClaimApiError extends Error {
   constructor(message, status, authoritativeStock = null) {
@@ -42,6 +42,7 @@ export function createMockClaimApi(
   )
   const completedClaims = new Map()
   const forcedConflicts = new Set()
+  let clockOffsetMs = 0
 
   function getStock(itemId) {
     return stockById.get(itemId)
@@ -99,7 +100,7 @@ export function createMockClaimApi(
 
     const phase = getAirdropPhase(
       { ...item, remainingStock: stock },
-      now(),
+      now() + clockOffsetMs,
     )
 
     if (phase !== AIRDROP_PHASE.AIRDROP_LIVE) {
@@ -122,7 +123,13 @@ export function createMockClaimApi(
   return {
     claim,
     getStock,
-    getNow: now,
+    getNow: () => now() + clockOffsetMs,
+    setClockOffset(offsetMs) {
+      if (!Number.isFinite(offsetMs)) {
+        throw new Error('Invalid clock offset')
+      }
+      clockOffsetMs = offsetMs
+    },
     simulateConflictOnce,
     setAuthoritativeStockForTest,
   }

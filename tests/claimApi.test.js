@@ -91,3 +91,21 @@ test('mock server rejects claims before opening', async () => {
     (error) => error.status === 409,
   )
 })
+
+test('demo clock offset updates mock server availability', async () => {
+  const api = createMockClaimApi(dropItems, {
+    latencyMs: 0,
+    now: () => 1000,
+  })
+
+  api.setClockOffset(liveTime - 1000)
+
+  assert.equal(api.getNow(), liveTime)
+
+  const result = await api.claim({
+    itemId: 'pvs-vip-pass',
+    claimId: 'demo-clock-test',
+  })
+
+  assert.equal(result.remainingStock, 19)
+})

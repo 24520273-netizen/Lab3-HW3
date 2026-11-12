@@ -22,7 +22,14 @@ const phaseLabels = {
   [AIRDROP_PHASE.EXPIRED]: 'EXPIRED - Drop closed',
 }
 
-export default function DropCard({ item }) {
+export default function DropCard({
+  item,
+  serverOffsetMs = 0,
+  isPending = false,
+  feedback,
+  onClaim,
+  onSimulateConflict,
+}) {
   const isTicket = item.type === 'ticket'
   const dropDate = new Date(item.dropEpochMs)
   const validDate = Number.isFinite(dropDate.getTime())
@@ -34,7 +41,7 @@ export default function DropCard({ item }) {
       : NaN
 
   const { nowEpochMs, remainingMs: expiryRemainingMs } =
-    usePubgAirdropTimer(expiryEpochMs)
+    usePubgAirdropTimer(expiryEpochMs, serverOffsetMs)
 
   const phase = getAirdropPhase(item, nowEpochMs)
   const openingRemainingMs = getRemainingMs(item.dropEpochMs, 0, nowEpochMs)
@@ -47,6 +54,11 @@ export default function DropCard({ item }) {
   const showCountdown =
     phase === AIRDROP_PHASE.WARMUP ||
     phase === AIRDROP_PHASE.AIRDROP_LIVE
+
+  const canClaim =
+    phase === AIRDROP_PHASE.AIRDROP_LIVE &&
+    item.remainingStock > 0 &&
+    !isPending
 
   return (
     <article className={styles.card} aria-labelledby={`drop-title-${item.id}`}>
@@ -87,7 +99,7 @@ export default function DropCard({ item }) {
                   {dateFormatter.format(dropDate)}
                 </time>
               ) : (
-                <span>Schedule unavailable</span>
+                'Schedule unavailable'
               )}
             </dd>
           </div>
@@ -101,7 +113,6 @@ export default function DropCard({ item }) {
             data-phase={phase ?? 'INVALID'}
             role="status"
             aria-live="polite"
-            aria-atomic="true"
           >
             {phaseLabels[phase] ?? 'Schedule unavailable'}
           </span>
@@ -113,7 +124,6 @@ export default function DropCard({ item }) {
                   ? 'Opens in'
                   : 'Drop closes in'}
               </span>
-
               <strong className={styles.clock}>
                 {formatCountdown(countdownMs)}
               </strong>
@@ -121,7 +131,43 @@ export default function DropCard({ item }) {
           )}
         </div>
 
-        <p>Preview only. Claim is not available in Step 3.</p>
+        <div className={styles.claimActions}>
+          <button
+            type="button"
+            className={styles.claimButton}
+            disabled={!canClaim}
+            onClick={onClaim}
+          >
+            {isPending
+              ? 'Processing...'
+              : canClaim
+                ? 'Claim (Simulation)'
+                : 'Claim Unavailable'}
+          </button>
+
+          <button
+            type="button"
+            className={styles.conflictButton}
+            disabled={!canClaim}
+            onClick={onSimulateConflict}
+          >
+            Simulate next HTTP 409
+          </button>
+        </div>
+
+        {feedback ? (
+          <p
+            className={styles.feedback}
+            data-kind={feedback.kind}
+            role={feedback.kind === 'error' ? 'alert' : 'status'}
+          >
+            {feedback.message}
+          </p>
+        ) : (
+          <p className={styles.previewNote}>
+            Mock inventory only. No real item will be delivered.
+          </p>
+        )}
       </footer>
     </article>
   )
