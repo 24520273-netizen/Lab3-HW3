@@ -1,0 +1,104 @@
+﻿export const dropItems = [
+  {
+    id: 'pvs-vip-pass',
+    title: 'PVS Grand Finals VIP Ticket',
+    type: 'ticket',
+    priceVnd: 250000,
+    remainingStock: 20,
+    dropEpochMs: Date.parse('2026-12-20T19:00:00+07:00'),
+  },
+  {
+    id: 'gcoin-contraband-crate',
+    title: 'G-Coin Contraband Crate',
+    type: 'crate',
+    priceVnd: 79000,
+    remainingStock: 50,
+    dropEpochMs: Date.parse('2026-12-20T19:00:00+07:00'),
+  },
+]
+
+export const squadStandings = [
+  {
+    squadId: 'te',
+    squadName: 'The Expendables',
+    shortName: 'TE',
+    wwcdCount: 3,
+    placementPts: 72,
+    killPts: 48,
+  },
+  {
+    squadId: 'ces',
+    squadName: 'Cerberus Esports',
+    shortName: 'CES',
+    wwcdCount: 2,
+    placementPts: 80,
+    killPts: 54,
+  },
+  {
+    squadId: 'roy',
+    squadName: 'Roy Esports',
+    shortName: 'ROY',
+    wwcdCount: 1,
+    placementPts: 65,
+    killPts: 40,
+  },
+  {
+    squadId: 'agg',
+    squadName: 'AGG',
+    shortName: 'AGG',
+    wwcdCount: 1,
+    placementPts: 59,
+    killPts: 36,
+  },
+]
+
+export const killFeedEvents = [
+  {
+    id: 'kill-001',
+    attacker: 'TE_Rush',
+    victim: 'CES_Frost',
+    weapon: 'M416',
+    squadId: 'te',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:15:00+07:00'),
+  },
+  {
+    id: 'kill-002',
+    attacker: 'CES_Blaze',
+    victim: 'ROY_Shadow',
+    weapon: 'AKM',
+    squadId: 'ces',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:16:00+07:00'),
+  },
+  {
+    id: 'kill-003',
+    attacker: 'ROY_Storm',
+    victim: 'AGG_Nova',
+    weapon: 'Mini14',
+    squadId: 'roy',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:17:00+07:00'),
+  },
+  {
+    id: 'kill-004',
+    attacker: 'AGG_Falcon',
+    victim: 'TE_Rush',
+    weapon: 'Beryl M762',
+    squadId: 'agg',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:18:00+07:00'),
+  },
+  {
+    id: 'kill-005',
+    attacker: 'TE_Hunter',
+    victim: 'ROY_Storm',
+    weapon: 'Kar98k',
+    squadId: 'te',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:19:00+07:00'),
+  },
+  {
+    id: 'kill-006',
+    attacker: 'CES_Blaze',
+    victim: 'AGG_Falcon',
+    weapon: 'M416',
+    squadId: 'ces',
+    occurredAtEpochMs: Date.parse('2026-11-09T20:20:00+07:00'),
+  },
+]

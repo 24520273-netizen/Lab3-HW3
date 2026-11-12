@@ -217,3 +217,27 @@ PLAN → IMPLEMENT → VERIFY → COMMIT
 Update this document before implementing each step.
 Mark completed tasks as DONE only after verification.
 Stop after Step 1 until the next implementation request.
+
+STEP 2 DELIVERY PLAN - IN PROGRESS
+
+Commit 3: Define PUBG Arena datasets
+- Ticket and G-Coin crate data
+- Four simulated PUBG squads
+- Simulated kill-feed events
+- Validate data contracts and stable IDs
+
+Commit 4: Build championship arena interface
+- Arena header and overview
+- Item cards with VND prices and stock
+- Countdown and claim placeholders
+
+Commit 5: Implement sortable leaderboard
+- WWCD, placement and kill points
+- Search, sorting and empty state
+
+Commit 6: Add kill-feed filters and responsive layout
+- Squad and weapon filters
+- Responsive 375px-1440px
+- Accessibility and UI verification
+
+Step 3 timer, FSM and Step 4 claim logic are excluded.
