@@ -284,3 +284,33 @@ Commit 10 - Lifecycle Verification
 - Check responsive layout and browser console
 
 Excluded: Claim API, optimistic stock changes, HTTP 409 rollback.
+
+STEP 4 IMPLEMENTATION PLAN
+
+STEP 4 STATUS: IN PROGRESS
+
+Commit 11 - Mock Claim Service
+- Maintain authoritative stock independently from UI
+- Return deterministic success and HTTP 409 responses
+- Support abort and claimId idempotency
+- Use simulated server time
+
+Commit 12 - Optimistic Inventory
+- Store confirmed stock and in-flight claims separately
+- Derive optimistic stock immutably
+- Reconcile HTTP 409 using authoritative stock
+- Verify reducer edge cases
+
+Commit 13 - Claim Lock and Lifecycle
+- Synchronous per-item claimId lock
+- Independent requests for different items
+- Abort on unmount and prevent stale callbacks
+- Allow retry after failure
+
+Commit 14 - Claim UI and Integration
+- Add Claim and Processing controls
+- Add success, conflict and error messages
+- Add explicit Demo Clock for testing live claims
+- Test interactions, lint, build and responsive layout
+
+Excluded: real backend, payments, authentication and final audit.
