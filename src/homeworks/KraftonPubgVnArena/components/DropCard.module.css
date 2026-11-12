@@ -250,3 +250,13 @@
   font-size: 12px;
   text-align: center;
 }
+
+.details dd {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.claimButton,
+.conflictButton {
+  width: 100%;
+}

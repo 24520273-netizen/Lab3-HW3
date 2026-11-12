@@ -42,6 +42,9 @@ export default function ArenaShell() {
   }
   return (
     <div className={styles.arena}>
+      <a className={styles.skipLink} href="#main-content">
+        Skip to main content
+      </a>
       <header className={styles.header}>
         <div className={styles.headerInner}>
           <a className={styles.brand} href="#main-content">

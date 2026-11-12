@@ -1,4 +1,4 @@
-﻿import usePubgAirdropTimer from '../hooks/usePubgAirdropTimer.js'
+import usePubgAirdropTimer from '../hooks/usePubgAirdropTimer.js'
 import { getRemainingMs } from '../domain/airdropClock.js'
 import { AIRDROP_PHASE, getAirdropPhase } from '../domain/airdropState.js'
 import { formatCountdown } from '../domain/formatCountdown.js'
@@ -109,6 +109,7 @@ export default function DropCard({
       <footer className={styles.footer}>
         <div className={styles.phaseBox}>
           <span
+            id={`drop-status-${item.id}`}
             className={styles.phaseStatus}
             data-phase={phase ?? 'INVALID'}
             role="status"
@@ -135,6 +136,7 @@ export default function DropCard({
           <button
             type="button"
             className={styles.claimButton}
+            aria-describedby={`drop-status-${item.id}`}
             disabled={!canClaim}
             onClick={onClaim}
           >
