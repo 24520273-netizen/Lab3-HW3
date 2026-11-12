@@ -314,3 +314,27 @@ Commit 14 - Claim UI and Integration
 - Test interactions, lint, build and responsive layout
 
 Excluded: real backend, payments, authentication and final audit.
+
+STEP 5 FINAL VERIFICATION PLAN
+
+STEP 5 STATUS: IN PROGRESS
+
+Commit 15 - Functional Verification
+- Add reusable npm test script
+- Add final regression coverage for arena, FSM and claims
+- Verify immutable data, VND formatting and claim safety
+- Run all tests, ESLint and production build
+
+Commit 16 - Accessibility and Responsive
+- Improve keyboard navigation and claim state descriptions
+- Verify focus indicators and responsive layout
+- Check Chrome Console and Lighthouse Accessibility
+- Document actual issues without inventing results
+
+Commit 17 - AI Audit and Submission
+- Document 3 observed AI-assisted failures
+- Reference actual evidence and fixing commits
+- Complete README and submission checklist
+- Verify Git history, clean working tree and artifacts
+
+Excluded: Bonus Exercise and production PUBG integration.
