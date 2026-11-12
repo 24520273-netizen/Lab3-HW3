@@ -254,3 +254,33 @@ Status: DONE
 - Automated tests, lint and production build verified
 
 Next: Step 3 - Anti-Drift Timer and Airdrop FSM
+
+STEP 3 IMPLEMENTATION PLAN
+
+STEP 3 STATUS: IN PROGRESS
+
+Commit 7 - Anti-Drift Timer
+- Implement absolute timestamp countdown
+- Synchronize on visibilitychange
+- Cleanup intervals and listeners
+- Verify timer calculation
+
+Commit 8 - Airdrop FSM
+- Define WARMUP, AIRDROP_LIVE, LOOTED_OUT, EXPIRED
+- Add explicit claim window duration
+- Define phase priorities and invalid data handling
+- Verify phase transitions
+
+Commit 9 - Countdown UI
+- Integrate timer and phases into existing DropCard
+- Display opening countdown and expiration status
+- Avoid frequent screen-reader announcements
+- Preserve existing Arena, Leaderboard and Kill-Feed
+
+Commit 10 - Lifecycle Verification
+- Test drift, background-tab recovery and cleanup
+- Test stock and expiry boundaries
+- Verify existing tests, lint and production build
+- Check responsive layout and browser console
+
+Excluded: Claim API, optimistic stock changes, HTTP 409 rollback.
