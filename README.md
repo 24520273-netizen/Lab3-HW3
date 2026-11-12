@@ -1,16 +1,63 @@
-# React + Vite
+﻿**LAB 03 – HOMEWORK 3**
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**KRAFTON x PUBG Vietnam Championship & Airdrop Arena**
 
-Currently, two official plugins are available:
+An educational React 19 application simulating PUBG Vietnam Championship ticket drops, G-Coin crates, standings and claim workflows.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**TECH STACK**
 
-## React Compiler
+- React 19
+- Vite
+- JavaScript
+- CSS Modules
+- Node.js native test runner
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**FEATURES**
 
-## Expanding the ESLint configuration
+- Championship Arena and item catalog
+- Vietnamese currency and inventory display
+- Sortable squad leaderboard
+- Filterable kill-feed
+- Anti-drift countdown and visibility synchronization
+- Airdrop finite state machine
+- Optimistic Claim and HTTP 409 rollback
+- Mock API, idempotency protection and Demo Clock
+- Responsive and keyboard-accessible interface
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+**RUN PROJECT**
+
+npm install
+npm run dev
+
+**VERIFY**
+
+npm run test
+npm run lint
+npm run build
+
+**PRODUCTION PREVIEW**
+
+npm run preview
+
+**TEST CLAIM WORKFLOW**
+
+1. Enable Preview live claim window (demo).
+2. Claim a VIP Ticket or G-Coin Crate.
+3. Verify the stock decreases by one.
+4. Select Simulate next HTTP 409.
+5. Claim again and verify stock rollback.
+6. Retry to test recovery.
+
+**LIMITATIONS**
+
+This project is an educational simulation.
+No official PUBG API, payment or account system is connected.
+Mock inventory resets after page reload.
+All tournament standings and kill-feed events are simulated.
+
+**DOCUMENTATION**
+
+- project-rules.md
+- TASK_DECOMPOSITION.md
+- AI_FAILURE_AUDIT.md
+- SUBMISSION_CHECKLIST.md
